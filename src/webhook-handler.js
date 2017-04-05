@@ -23,7 +23,12 @@ async function webhookHandler(ctx, next) {
 
         ctx.status = 200;
 
-        const data = ctx.request.body;
+        if (event === 'ping') {
+            logger.info('Received ping event');
+            return;
+        }
+
+        const data = ctx.request.body
 
         data.logger = logger.child({
             event,
