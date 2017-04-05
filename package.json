@@ -1,0 +1,28 @@
+{
+  "name": "simple-deploy-github",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Node.js server to manage simple application deployments using the GitHub API",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cheminfo/simple-deploy-github.git"
+  },
+  "keywords": [],
+  "author": "Michaël Zasso",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/cheminfo/simple-deploy-github/issues"
+  },
+  "homepage": "https://github.com/cheminfo/simple-deploy-github#readme",
+  "dependencies": {
+    "bunyan": "^1.8.10",
+    "dotenv": "^4.0.0",
+    "koa": "^2.2.0",
+    "koa-bodyparser": "^4.2.0",
+    "koa-bunyan": "^1.0.0"
+  }
+}
