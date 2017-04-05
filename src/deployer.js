@@ -63,11 +63,10 @@ async function flushQueue() {
 async function executeDeployment(toDeploy) {
     toDeploy.logger.info('Start deployment');
     const execInCwd = getExecInCwd(toDeploy.config.cwd);
-    await execInCwd('git', ['reset', '--hard', 'HEAD']);
     await execInCwd('git', ['fetch', 'origin']);
-    await execInCwd('git', ['checkout', 'deploy']);
+    await execInCwd('git', ['reset', '--hard', 'HEAD']);
+    await execInCwd('git', ['checkout', 'origin/deploy']);
     await execInCwd('git', ['clean', '-fd']);
-    await execInCwd('git', ['pull', 'origin', 'deploy']);
     await execInCwd('yarn', ['install']);
     await execInCwd('yarn', ['run', 'deploy']);
 }
