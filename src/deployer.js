@@ -1,6 +1,10 @@
 'use strict';
 
 const child_process = require('child_process');
+const fs = require('fs');
+const path = require('path');
+const util = require('util');
+const exists = util.promisify(fs.exists);
 
 const config = require('./config');
 const die = require('./die');
@@ -62,13 +66,16 @@ async function flushQueue() {
 
 async function executeDeployment(toDeploy) {
     toDeploy.logger.info('Start deployment');
-    const execInCwd = getExecInCwd(toDeploy.config.cwd);
+    const cwd = toDeploy.config.cwd;
+    const execInCwd = getExecInCwd(cwd);
+    const hasYarn = await exists(path.join(cwd, 'yarn.lock'));
+    const npm = hasYarn ? 'yarn' : 'npm';
     await execInCwd('git', ['fetch', 'origin']);
     await execInCwd('git', ['reset', '--hard', 'HEAD']);
     await execInCwd('git', ['checkout', 'origin/deploy']);
     await execInCwd('git', ['clean', '-fd']);
-    await execInCwd('yarn', ['install']);
-    await execInCwd('yarn', ['run', 'deploy']);
+    await execInCwd(npm, ['install']);
+    await execInCwd(npm, ['run', 'deploy']);
 }
 
 function getRepoConfig(repo) {
