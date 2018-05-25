@@ -19,9 +19,9 @@
   },
   "homepage": "https://github.com/cheminfo/simple-deploy-github#readme",
   "dependencies": {
+    "@octokit/rest": "^15.7.0",
     "bunyan": "^1.8.10",
     "dotenv": "^5.0.1",
-    "github": "^14.0.0",
     "koa": "^2.2.0",
     "koa-bodyparser": "^4.2.0",
     "koa-bunyan": "^1.0.0"

@@ -1,19 +1,19 @@
 'use strict';
 
-const GitHubApi = require('github');
+const GitHubApi = require('@octokit/rest');
 
 const token = process.env.GITHUB_TOKEN || 'token';
 
 const githubApi = new GitHubApi({
-    protocol: 'https',
-    headers: {
-        'user-agent': 'Simple-Deploy-GitHub'
-    }
+  protocol: 'https',
+  headers: {
+    'user-agent': 'Simple-Deploy-GitHub'
+  }
 });
 
 githubApi.authenticate({
-    type: 'oauth',
-    token
+  type: 'oauth',
+  token
 });
 
 module.exports = githubApi;
